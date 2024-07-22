@@ -1,27 +1,31 @@
-import { StyleSheet, View, Image, Text } from 'react-native'
+import { StyleSheet, View, Image, Text, Pressable } from 'react-native'
 import React from 'react'
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen'
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, onPress }) => {
   return (
-    <View style={styles.frame} >
-      <View style={styles.container} >
-        <Image
-          source={{ uri: product.image }}
-          style={styles.image}
-          resizeMode='contain' />
-        <View style={styles.body} >
-          <Text
-            style={styles.title}
-            numberOfLines={1}
-            ellipsizeMode='tail'
-          >{product.title}</Text>
-          <Text
-            style={styles.price}
-          >${product.price}</Text>
+    <Pressable
+      onPress={onPress}>
+      <View style={styles.frame} >
+        <View style={styles.container} >
+          <Image
+            source={{ uri: product.image }}
+            style={styles.image}
+            resizeMode='contain' />
+          <View style={styles.body} >
+            <Text
+              style={styles.title}
+              numberOfLines={1}
+              ellipsizeMode='tail'
+            >{product.title}</Text> 
+            <Text
+              style={styles.price}
+            >${product.price}</Text>
+            
+          </View>
         </View>
       </View>
-    </View>
+    </Pressable>
   )
 }
 

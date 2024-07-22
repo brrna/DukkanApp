@@ -5,12 +5,19 @@ import Header from '../components/myHeader';
 import {BASE_URL} from "@env"
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import useFetch from '../hooks/useFetch';
+import { useNavigation } from '@react-navigation/native';
 
 const Products = () => {
 
+  const navigation = useNavigation();
+
   const {loading, data, error} = useFetch(BASE_URL);
 
-  const renderProduct = ({ item }) => <ProductCard product={item} />
+  const handlePress = () => {
+    navigation.navigate('DetailScreen')
+  };
+
+  const renderProduct = ({ item }) => <ProductCard product={item} onPress={handlePress} />
   const keyProduct = (item) => item.id.toString();
 
   if (loading) {
