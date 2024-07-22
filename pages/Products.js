@@ -2,7 +2,7 @@ import { FlatList, SafeAreaView, StatusBar, StyleSheet, Text } from 'react-nativ
 import React, { useEffect, useState } from 'react'
 import ProductCard from '../components/ProductCard';
 import axios from 'axios';
-import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import Header from '../components/myHeader';
 
 const Products = () => {
 
@@ -55,7 +55,7 @@ const Products = () => {
   return (
     <SafeAreaView style={styles.container} >
       <StatusBar />
-      <Text>Products</Text>
+      <Header/>
       <FlatList
         data={data}
         renderItem={renderProduct}
@@ -70,7 +70,7 @@ export default Products
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "pink",
+    backgroundColor: "white",
     justifyContent: "center",
     alignItems: "center"
   }
