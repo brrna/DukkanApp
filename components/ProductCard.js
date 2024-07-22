@@ -11,14 +11,14 @@ const ProductCard = ({ product }) => {
           style={styles.image}
           resizeMode='contain' />
         <View style={styles.body} >
-          <Text 
-           style={styles.title}
-           numberOfLines={1}
-           ellipsizeMode='tail' 
-           >{product.title}</Text>
-          <Text 
-           style={styles.price}
-           >${product.price}</Text>
+          <Text
+            style={styles.title}
+            numberOfLines={1}
+            ellipsizeMode='tail'
+          >{product.title}</Text>
+          <Text
+            style={styles.price}
+          >${product.price}</Text>
         </View>
       </View>
     </View>
