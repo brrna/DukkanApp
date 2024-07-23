@@ -13,11 +13,11 @@ const Products = () => {
 
   const {loading, data, error} = useFetch(BASE_URL);
 
-  const handlePress = () => {
-    navigation.navigate('DetailScreen')
+  const handlePress = (id) => {
+    navigation.navigate('DetailScreen', {id})
   };
 
-  const renderProduct = ({ item }) => <ProductCard product={item} onPress={handlePress} />
+  const renderProduct = ({ item }) => <ProductCard product={item} onPress={() => handlePress(item.id)} />
   const keyProduct = (item) => item.id.toString();
 
   if (loading) {

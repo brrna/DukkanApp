@@ -23,13 +23,13 @@ const ProductCard = ({ product, onPress }) => {
               ellipsizeMode='tail'
             >{product.title}</Text>
             <View style={styles.rate} >
-            <StarRating
-              rating={rating}
-              onChange={setRating}
-              starSize={hp(2.3)}
-              color='#D0B8AC'
-            />
-            <Text style={styles.rateText} >({product.rating.count})</Text>
+              <StarRating
+                rating={rating}
+                onChange={setRating}
+                starSize={hp(2.3)}
+                color='#D0B8AC'
+              />
+              <Text style={styles.rateText} >({product.rating.count})</Text>
             </View>
             <Text
               style={styles.price}

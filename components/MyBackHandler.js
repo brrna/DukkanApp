@@ -1,28 +1,21 @@
-import { Pressable, StyleSheet, View } from 'react-native'
+import { Pressable, StyleSheet, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen'
 import { MaterialIcons } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
 
-const MyBackHandler = () => {
-
-  const navigation = useNavigation();
-
-  const handleBack = () => {
-    navigation.navigate('ProductsScreen');
-  }
+const MyBackHandler = ({onPress}) => {
 
   return (
     <View style={styles.container} >
-      <Pressable 
-        onPress={handleBack}
+      <TouchableOpacity 
+        onPress={onPress}
         style={styles.icon} >
         <MaterialIcons
           name="arrow-back-ios"
           size={hp(5.3)}
           color={"#D0B8AC"}
           style={styles.icon} />
-      </Pressable>
+      </TouchableOpacity>
     </View>
   )
 }
@@ -37,7 +30,7 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   icon: {
-    backgroundColor: "white",
+    backgroundColor: "rgba(0, 0, 0, 0)",
     marginLeft: wp(2),
     height: hp(6),
     width: wp(6),
