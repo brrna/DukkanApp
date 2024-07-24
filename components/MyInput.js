@@ -2,11 +2,12 @@ import { StyleSheet, TextInput, View } from 'react-native'
 import React from 'react'
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen'
 
-const MyInput = ({ placeholder, onChangeText }) => {
+const MyInput = ({ placeholder, onChangeText, value }) => {
     return (
         <View style={styles.frame} >
             <TextInput
                 style={styles.input}
+                value={value}
                 placeholder={placeholder}
                 onChangeText={onChangeText}
             />

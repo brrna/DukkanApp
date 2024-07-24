@@ -1,12 +1,47 @@
-import { SafeAreaView, StyleSheet, Image } from 'react-native'
+import { SafeAreaView, StyleSheet, Image, Alert } from 'react-native'
 import React, { useState } from 'react'
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen'
 import MyInput from '../components/MyInput'
 import MyButton from '../components/MyButton'
+import { useNavigation } from '@react-navigation/native'
+import axios from 'axios'
+import {LOGIN_URL} from "@env"
 
 const Login = () => {
 
-    const[text, setText] = useState();
+    const navigation = useNavigation();
+
+    const [userName, setUserName] = useState("");
+    const [password, setPassword] = useState("");
+
+    const handleLogin = async () => {
+        try {
+            const response = await fetch(LOGIN_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    username: userName,
+                    password: password,
+                }),
+            });
+
+            const json = await response.json();
+
+            if (response.ok) {
+                console.log('Login successful:', json);
+                // Navigate to the next screen (e.g., Home)
+                navigation.replace('ProductsScreen');
+            } else {
+                Alert.alert('Login Failed', json.message || 'An error occurred');
+            }
+        } catch (error) {
+            console.error('Error during login:', error);
+            Alert.alert('Login Error', 'Something went wrong. Please try again later.');
+        }
+    }
+
 
     return (
         <SafeAreaView style={styles.container} >
@@ -15,13 +50,16 @@ const Login = () => {
                 source={require("../assets/images/logo.jpeg")} />
 
             <MyInput
-                onChangeText={text}
+                value={userName}
+                onChangeText={setUserName}
                 placeholder="enter your name" />
             <MyInput
-                onChangeText={text}
+                value={password}
+                onChangeText={setPassword}
                 placeholder="enter your password" />
 
-            <MyButton />
+            <MyButton
+                onPress={handleLogin} />
         </SafeAreaView>
     )
 }

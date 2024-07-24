@@ -1,11 +1,12 @@
 import { ActivityIndicator, FlatList, SafeAreaView, StatusBar, StyleSheet, Text } from 'react-native'
-import React from 'react'
+import React, {useEffect} from 'react'
 import ProductCard from '../components/ProductCard';
 import Header from '../components/myHeader';
 import {BASE_URL} from "@env"
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import useFetch from '../hooks/useFetch';
 import { useNavigation } from '@react-navigation/native';
+import { BackHandler } from 'react-native';
 
 const Products = () => {
 
@@ -19,6 +20,20 @@ const Products = () => {
 
   const renderProduct = ({ item }) => <ProductCard product={item} onPress={() => handlePress(item.id)} />
   const keyProduct = (item) => item.id.toString();
+
+  useEffect(() => {
+    const backAction = () => {
+        BackHandler.exitApp();
+        return true;
+    }
+
+    const backHandler = BackHandler.addEventListener(
+        'hardwareBackPress',
+        backAction,
+    );
+
+    return () => backHandler.remove();
+}, []);
 
   if (loading) {
     return (

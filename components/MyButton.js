@@ -3,18 +3,14 @@ import React from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen'
 
-const MyButton = () => {
+const MyButton = ({onPress}) => {
 
     const navigation = useNavigation();
-
-    const handleNavigation = () => {
-        navigation.navigate("ProductsScreen")
-    }
 
   return (
     <View style={styles.frame} >
       <Pressable
-        onPress={handleNavigation} >
+        onPress={onPress} >
             <Text style={styles.text} >Sign In</Text>
         </Pressable>
     </View>
