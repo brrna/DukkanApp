@@ -1,9 +1,9 @@
-import { Pressable, StyleSheet, View, Text } from 'react-native'
+import { Pressable, StyleSheet, View, Text, ActivityIndicator } from 'react-native'
 import React from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen'
 
-const MyButton = ({ onPress }) => {
+const MyButton = ({ onPress, loading }) => {
 
   const navigation = useNavigation();
 
@@ -12,7 +12,11 @@ const MyButton = ({ onPress }) => {
       <Pressable
         style={styles.button}
         onPress={onPress} >
-        <Text style={styles.text} >Sign In</Text>
+        {loading ? (
+          <ActivityIndicator color="white" />
+        ) : (
+          <Text style={styles.text} >Sign In</Text>
+        )}
       </Pressable>
     </View>
   )
@@ -30,7 +34,7 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: "rgb(201, 157, 120)",
-    height: hp(6,5),
+    height: hp(6, 5),
     width: wp(93),
     justifyContent: "center",
     alignItems: "center",

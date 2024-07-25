@@ -1,18 +1,38 @@
-import { SafeAreaView, StyleSheet, Image, View } from 'react-native'
-import React from 'react'
+import { SafeAreaView, StyleSheet, Image, View, Alert } from 'react-native'
+import React, { useEffect } from 'react'
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen'
 import MyInput from '../components/MyInput'
 import MyButton from '../components/MyButton'
 import { useNavigation } from '@react-navigation/native'
 import { Formik } from 'formik'
+import usePost from '../hooks/usePost'
+import { LOGIN_URL } from "@env"
 
 const Login = () => {
 
     const navigation = useNavigation();
 
-    const handleLogin = () => {
-        navigation.navigate("ProductsScreen")
+    const {data, error, loading, post} = usePost();
+
+    const handleLogin = (values) => {
+        post(LOGIN_URL, values );
     }
+
+    useEffect(() => {
+        if(error) {
+            Alert.alert("dukkan", "something went wrong")
+        }
+    }, [error])
+
+    useEffect(() => {
+        if(data) {
+            if(data.status === 'Error') {
+                Alert.alert("dukkan", "user not found")
+            } else {
+                navigation.navigate("ProductsScreen")
+            }
+        }
+    }, [data])
 
     return (
         <SafeAreaView style={styles.container} >
@@ -20,7 +40,7 @@ const Login = () => {
                 style={styles.image}
                 source={require("../assets/images/logo.jpeg")} />
             <Formik 
-                initialValues={{username: ' ', password: ' '}}
+                initialValues={{username: '', password: ''}}
                 onSubmit={handleLogin} >
                 {({handleSubmit, handleChange, values}) => (
                     <View>
@@ -32,11 +52,11 @@ const Login = () => {
                         <MyInput
                             value={values.password}
                             onChangeText={handleChange("password")}
-                            placeholder="enter your password"
+                            placeholder={"enter your password"}
                             name="lock" />
 
                         <MyButton
-                            onPress={handleSubmit} />
+                            onPress={handleSubmit} loading={loading} />
                     </View>
                 )}
             </Formik>

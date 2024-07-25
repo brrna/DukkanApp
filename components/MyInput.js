@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
         height: hp(6.5),
         width: wp(85),
         alignSelf: "center",
-        padding: wp(3)
+        padding: wp(3),
+        color: "black"
     }
 })
