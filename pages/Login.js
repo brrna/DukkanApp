@@ -52,11 +52,13 @@ const Login = () => {
             <MyInput
                 value={userName}
                 onChangeText={setUserName}
-                placeholder="enter your name" />
+                placeholder="enter your name"
+                name="user" />
             <MyInput
                 value={password}
                 onChangeText={setPassword}
-                placeholder="enter your password" />
+                placeholder="enter your password"
+                name="lock" />
 
             <MyButton
                 onPress={handleLogin} />
