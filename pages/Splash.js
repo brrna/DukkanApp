@@ -18,7 +18,7 @@ const Splash = () => {
       <Image 
         style={styles.image}
         source={require("../assets/images/logo.jpeg")} />
-        <Text style={styles.text} > DUKKAN </Text>
+        <Text style={styles.text} > dukkan </Text>
     </SafeAreaView>
   )
 }
@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
     text: {
         fontSize: hp(6),
         fontWeight: "bold",
-        color: "rgb(47, 18, 0)"
+        color: "rgb(47, 18, 0)",
+        fontStyle: "italic"
     }
 })

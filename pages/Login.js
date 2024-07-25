@@ -10,6 +10,10 @@ const Login = () => {
 
     const navigation = useNavigation();
 
+    const handleLogin = () => {
+        navigation.navigate("ProductsScreen")
+    }
+
     return (
         <SafeAreaView style={styles.container} >
             <Image
@@ -17,7 +21,7 @@ const Login = () => {
                 source={require("../assets/images/logo.jpeg")} />
             <Formik 
                 initialValues={{username: ' ', password: ' '}}
-                onSubmit={formValues => console.log(formValues) } >
+                onSubmit={handleLogin} >
                 {({handleSubmit, handleChange, values}) => (
                     <View>
                         <MyInput
